@@ -9,3 +9,6 @@ SOURCES += main.cpp \
 HEADERS += \
     Punto2D.h
 
+
+win32: LIBS += -lfreeglut -lglut32 -lopengl32
+else:unix: LIBS += -lGL -lglut
