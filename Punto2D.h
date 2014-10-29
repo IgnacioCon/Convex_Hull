@@ -2,6 +2,7 @@
 #define PUNTO2D_H
 
 #include <iostream>
+#include <vector>
 #include <stdlib.h>
 #include <time.h>
 
@@ -9,26 +10,19 @@ using namespace std;
 
 class Punto2D
 {
+protected:
 
-  protected:
-
-    float x;
-    float y;
-
-
-
-  public:
+    vector<int> x;
+    vector<int> y;
+public:
 
     Punto2D();
-    void generarPunto();
-    float getY();
-    float getX();
-    void setXY(float x, float y);
+    Punto2D(int points);
 
+    int getY(int value);
+    int getX(int value);
 
-
-
-
+    void createPoints(int points);
 };
 
 

@@ -7,29 +7,17 @@ using namespace std;
 
 void display();
 void init();
+void reshape(int width,int height);
 
 Punto2D a;
-Punto2D b;
-Punto2D c;
 
+int points;
 int main(int argc, char **argv)
 {
     srand(time(NULL));
 
-
-
-    a.generarPunto();
-    b.generarPunto();
-    c.generarPunto();
-
-    cout<<"Punto 1"<<endl;
-    cout<<"X = "<<a.getX()<<" Y = "<<a.getY()<<endl;
-
-    cout<<"Punto 2"<<endl;
-    cout<<"X = "<<b.getX()<<" Y = "<<b.getY()<<endl;
-
-    cout<<"Punto 3"<<endl;
-    cout<<"X = "<<c.getX()<<" Y = "<<c.getY()<<endl;
+    cout<<"Input number of points to plot: "; cin>>points;
+    a.createPoints(points);
 
     glutInit(&argc, argv); //Begin to use GLUT
     //Begin display
@@ -40,6 +28,7 @@ int main(int argc, char **argv)
     glutCreateWindow("Window");
     init();
     glutDisplayFunc(display); //Begin visualization of the image
+    glutReshapeFunc(reshape);
 
     glutMainLoop();
 
@@ -57,14 +46,14 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
     glTranslatef(0.375, 0.375, 0);
-    glPointSize(10);
+    glPointSize(2);
     glBegin(GL_POINTS);
 
-    glVertex2s(a.getX(), a.getY());
-    glVertex2s(b.getX(),b.getY());
-    glVertex2s(c.getX(),c.getY());
+    for(int i = 0; i< points;i++)
+    {
+        glVertex2s(a.getX(i),a.getY(i));
 
-
+    }
     glEnd();
     glFlush();
     glutPostRedisplay();
@@ -73,10 +62,25 @@ void display()
 
 void init()
 {
-    //int b=600;
-    // glMatrixMode(GL_PROJECTION);
-    //glClearColor(0.0,0.0,0.0,0.0);
-    // gluOrtho2D(-b,b,500,-500);
-    glClearColor(0.0,0.0,0.0,0.0); //Esta funcion recive un valor RGBA
+   glClearColor(0.0,0.0,0.0,0.0); //Esta funcion recive un valor RGBA
+}
+
+void reshape(int width,int height)
+{
+   // printf("%d %d\n",width,height);
+
+    glViewport(0,0,width,height);
+
+    //https://www.opengl.org/sdk/docs/man2/xhtml/glMatrixMode.xml
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+
+    glOrtho(-10.0f,10.0f,-10.0f,10.0f,-1.0f,1.0f);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+
+    glutPostRedisplay();
 }
 

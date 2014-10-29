@@ -2,34 +2,47 @@
 
 Punto2D::Punto2D()
 {
-    x = 0;
-    y = 0;
+    x.resize(0);
+    y.resize(0);
+}
+
+Punto2D::Punto2D(int points)
+{
+
+  x.resize(points);
+  y.resize(points);
 
 }
 
-void Punto2D::generarPunto()
+void Punto2D::createPoints(int points)
 {
+    x.resize(points);
+    y.resize(points);
+    for(int i=0; i<points; i++)
+    {
+        this->x[i] = (rand()%620)-310;
+    }
 
+    for(int i=0; i<points; i++)
+    {
+        this->y[i] = (rand()%460)-230;
+    }
 
-  this->x = (rand()%401)-200;
-  this->y = (rand()%401)-200;
-
+    for(int i = 0; i < points; i++)
+    {
+       cout<<"X: "<<this->x[i]<<" Y: "<<this->y[i]<<endl;
+    }
 
 }
 
-float Punto2D::getY()
+
+int Punto2D::getY(int value)
 {
-   return this->y;
+    return y[value];
 }
 
-float Punto2D::getX()
+int Punto2D::getX(int value)
 {
-   return this->x;
-}
-
-void Punto2D::setXY(float x, float y)
-{
-  this->x = x;
-  this->y = y;
+    return x[value];
 }
 
