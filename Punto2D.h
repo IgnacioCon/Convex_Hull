@@ -12,6 +12,7 @@ class Punto2D
 {
 protected:
 
+    int p;
     vector<int> x;
     vector<int> y;
 public:
@@ -21,6 +22,7 @@ public:
 
     int getY(int value);
     int getX(int value);
+    void salvar(string c);
 
     void createPoints(int points);
 };

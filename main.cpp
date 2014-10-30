@@ -18,6 +18,7 @@ int main(int argc, char **argv)
 
     cout<<"Input number of points to plot: "; cin>>points;
     a.createPoints(points);
+    a.salvar("Puntos.txt");
 
     glutInit(&argc, argv); //Begin to use GLUT
     //Begin display
