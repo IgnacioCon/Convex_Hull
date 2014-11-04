@@ -45,7 +45,8 @@ void GiftWrap::calcConvexHull(Punto2D a)
     this->convexHullX.push_back(a.getX(index));
     this->convexHullY.push_back(a.getY(index));
 
-    int m = index, o; //m is starting point, index is sentinel, and o is random point
+    int m = index;
+    int o; //m is starting point, index is sentinel, and o is random point
     int c = 1; //number of points in convex hull
 
     //Begin search for the Convex Hull
