@@ -94,5 +94,11 @@ int GiftWrap::leftTurn(Punto2D a, int m, int i, int o)
 
 }
 
+int GiftWrap::getVectorSize()
+{
+    return convexHullX.size();
+
+}
+
 
 

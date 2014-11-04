@@ -21,7 +21,7 @@ public:
 
     void calcConvexHull(Punto2D a);
     int leftTurn(Punto2D a, int m, int i, int o);
-
+    int getVectorSize();
 
 };
 

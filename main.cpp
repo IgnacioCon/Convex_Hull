@@ -65,7 +65,7 @@ void display()
     glEnd();
     glBegin(GL_LINE_LOOP);
     glColor3f(0,1,1);
-            for(int i = 0; i< points;i++)
+            for(int i = 0; i < b.getVectorSize();i++)
             {
                 glVertex2s(b.getConvexHullX(i),b.getConvexHullY(i)*(-1));
 
