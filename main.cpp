@@ -27,7 +27,7 @@ int main(int argc, char **argv)
     glutInit(&argc, argv); //Begin to use GLUT
     //Begin display
     glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
-    glutInitWindowPosition(100,100);
+    glutInitWindowPosition(170,100);
     //Window size
     glutInitWindowSize(640,480);
     glutCreateWindow("Window");
@@ -46,7 +46,7 @@ void display()
 {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(-320, 320, 240, -240, 0, 1);
+    glOrtho(-400, 400, 400, -400, 0, 1);
     glMatrixMode(GL_MODELVIEW);
 
     glClear(GL_COLOR_BUFFER_BIT);
