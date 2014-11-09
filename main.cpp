@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Punto2D.h"
 #include "giftwrap.h"
+#include "quickHull.h"
 #include <GL/gl.h>
 #include <GL/glut.h>
 
