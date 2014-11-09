@@ -87,3 +87,6 @@ void Punto2D::savePoints(string c)
       }
 
 }
+
+
+

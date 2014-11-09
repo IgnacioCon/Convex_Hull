@@ -1,6 +1,9 @@
 #ifndef GIFTWRAP_H
 #define GIFTWRAP_H
 
+#include <GL/gl.h>
+#include <GL/glut.h>
+
 #include "Punto2D.h"
 
 class GiftWrap
@@ -22,6 +25,8 @@ public:
     void calcConvexHull(Punto2D a);
     int leftTurn(Punto2D a, int m, int i, int o);
     int getVectorSize();
+
+    void pintado(GiftWrap b);
 
 };
 

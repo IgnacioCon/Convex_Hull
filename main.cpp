@@ -13,6 +13,7 @@ void reshape(int width,int height);
 
 Punto2D a;
 GiftWrap b;
+QuickHull c;
 
 int points;
 int main(int argc, char **argv)
@@ -22,8 +23,9 @@ int main(int argc, char **argv)
     cout<<"Input number of points to plot: "; cin>>points;
     a.createPoints(points);
 
-    b.calcConvexHull(a);
+    //b.calcConvexHull(a);
     //a.savePoints("Puntos.txt");
+    c.QHull(a);
 
     glutInit(&argc, argv); //Begin to use GLUT
     //Begin display
@@ -64,16 +66,13 @@ void display()
 
     }
     glEnd();
-    glBegin(GL_LINE_LOOP);
-    glColor3f(0,1,1);
-            for(int i = 0; i < b.getVectorSize();i++)
-            {
-                glVertex2s(b.getConvexHullX(i),b.getConvexHullY(i)*(-1));
 
-            }
-            glEnd();
-    glFlush();
-    glutPostRedisplay();
+    c.pintar(c);
+
+    glEnd();
+glFlush();
+glutPostRedisplay();
+
 }
 
 
