@@ -3,14 +3,14 @@ CONFIG += console
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += main.cpp \
-    Punto2D.cpp \
-    giftwrap.cpp \
+SOURCES += main.cpp\
+    Punto2D.cpp\
+    giftwrap.cpp\
     quickHull.cpp
 
-HEADERS += \
-    Punto2D.h \
-    giftwrap.h \
+HEADERS +=\
+    Punto2D.h\
+    giftwrap.h\
     quickHull.h
 
 

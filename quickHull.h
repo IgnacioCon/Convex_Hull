@@ -1,31 +1,34 @@
 #ifndef QUICKHULL_H
 #define QUICKHULL_H
 
-#include <GL/gl.h>
-#include <GL/glut.h>
-
 #include "Punto2D.h"
 
 class QuickHull
 {
 
-private:
+protected:
 
-    vector<int> QHullX;
-    vector<int> QHullY;
+int max_x;
+int min_x;
+int max_y;
+int min_y;
+vector<int> QHullX;
+vector<int> QHullY;
+vector <int> PosX;
+vector <int> PosY;
+vector <int> izquierdo;
+vector <int> derecho;
+vector <int> puntosQuickHull;
+
 
 public:
 
-    QuickHull();
-    int getQHullY(int value);
-    void setQHullY(int value);
-    int getQHullX(int value);
-    void setQHullX(int value);
-
-    void QHull(Punto2D a);
-    void pintar(QuickHull c);
-    int  getVectorSize();
-
+QuickHull();
+void calcQuickHull(Punto2D a);
+void calcularPuntosCriticos(Punto2D a);
+void determinarPuntosParticiones(Punto2D a);
+void determinarPuntosIzquierdo(Punto2D a);
+void determinarPuntosDerecho(Punto2D a);
 
 
 };

@@ -23,9 +23,9 @@ int main(int argc, char **argv)
     cout<<"Input number of points to plot: "; cin>>points;
     a.createPoints(points);
 
-    //b.calcConvexHull(a);
+    b.calcConvexHull(a);
+    c.calcQuickHull(a);
     //a.savePoints("Puntos.txt");
-    c.QHull(a);
 
     glutInit(&argc, argv); //Begin to use GLUT
     //Begin display
@@ -66,13 +66,16 @@ void display()
 
     }
     glEnd();
+    glBegin(GL_LINE_LOOP);
+    glColor3f(0,1,1);
+            for(int i = 0; i < b.getVectorSize();i++)
+            {
+                glVertex2s(b.getConvexHullX(i),b.getConvexHullY(i)*(-1));
 
-    c.pintar(c);
-
-    glEnd();
-glFlush();
-glutPostRedisplay();
-
+            }
+            glEnd();
+    glFlush();
+    glutPostRedisplay();
 }
 
 

@@ -32,7 +32,6 @@ public:
     void savePoints(string c);
     void createPoints(int points);
 
-
 };
 
 
