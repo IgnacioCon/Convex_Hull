@@ -85,6 +85,7 @@ int GiftWrap::leftTurn(Punto2D a, int m, int i, int o)
 
     result = ((a.getY(i)-a.getY(m))*(a.getX(o)-a.getX(i)))-((a.getY(o)-a.getY(i))*(a.getX(i)-a.getX(m)));
 
+
     if(result == 0)
     {
         return 0;	//collinear

@@ -11,7 +11,6 @@ protected:
    vector<int> convexHullX;
    vector<int> convexHullY;
 
-
 public:
     GiftWrap();
     int getConvexHullY(int value);

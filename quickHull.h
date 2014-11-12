@@ -2,33 +2,35 @@
 #define QUICKHULL_H
 
 #include "Punto2D.h"
+#include "math.h"
 
 class QuickHull
 {
 
 protected:
 
-int max_x;
-int min_x;
-int max_y;
-int min_y;
-vector<int> QHullX;
-vector<int> QHullY;
-vector <int> PosX;
-vector <int> PosY;
-vector <int> izquierdo;
-vector <int> derecho;
-vector <int> puntosQuickHull;
-
+    vector<int> highestXY;
+    vector<int> lowestXY;
+    vector<int> convexHullX;
+    vector<int> convexHullY;
 
 public:
 
-QuickHull();
-void calcQuickHull(Punto2D a);
-void calcularPuntosCriticos(Punto2D a);
-void determinarPuntosParticiones(Punto2D a);
-void determinarPuntosIzquierdo(Punto2D a);
-void determinarPuntosDerecho(Punto2D a);
+    QuickHull();
+
+    int gethighestXY(int value);
+    void sethighestXY(int value);
+
+    int getlowestXY(int value);
+    void setlowestXY(int value);
+
+    void quickHull(Punto2D a);
+    void findHull(Punto2D S, int P, int Q);
+
+    int isLeft(Punto2D a, int m, int i, int o);
+    int isRight(Punto2D S, int P, int Q);
+
+    int getVectorSize();
 
 
 };

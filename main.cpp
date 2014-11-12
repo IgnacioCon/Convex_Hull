@@ -24,7 +24,7 @@ int main(int argc, char **argv)
     a.createPoints(points);
 
     b.calcConvexHull(a);
-    c.calcQuickHull(a);
+    c.quickHull(a);
     //a.savePoints("Puntos.txt");
 
     glutInit(&argc, argv); //Begin to use GLUT
@@ -59,7 +59,7 @@ void display()
     glBegin(GL_POINTS);
     glColor3f(1,1,0);
 
-     glVertex2s(0,0);
+     //glVertex2s(0,0);
     for(int i = 0; i< points;i++)
     {
         glVertex2s(a.getX(i),a.getY(i)*(-1));
