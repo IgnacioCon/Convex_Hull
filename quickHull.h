@@ -24,6 +24,11 @@ public:
     int getlowestXY(int value);
     void setlowestXY(int value);
 
+    int getConvexHullX(int value);
+    void setConvexHullX(int value);
+    int getConvexHullY(int value);
+    void setConvexHullY(int value);
+
     void quickHull(Punto2D a);
     void findHull(Punto2D S, int P, int Q);
 
@@ -31,6 +36,7 @@ public:
     int isRight(Punto2D S, int P, int Q);
 
     int getVectorSize();
+
 
 
 };
