@@ -3,6 +3,7 @@
 
 #include "Punto2D.h"
 #include "math.h"
+#include <algorithm>
 
 class QuickHull
 {
@@ -26,14 +27,16 @@ public:
 
     int getConvexHullX(int value);
     void setConvexHullX(int value);
+
     int getConvexHullY(int value);
     void setConvexHullY(int value);
+
 
     void quickHull(Punto2D a);
     void findHull(Punto2D S, int P, int Q);
 
     int isLeft(Punto2D a, int m, int i, int o);
-    int isRight(Punto2D S, int P, int Q);
+    void isRight();
 
     int getVectorSize();
 

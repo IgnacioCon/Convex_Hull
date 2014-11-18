@@ -80,7 +80,7 @@ void display()
     glColor3f(0,1,1);
             for(int i = 0; i < c.getVectorSize();i++)
             {
-                glVertex2s(c.getConvexHullX(i),c.getConvexHullY(i)*-1);
+                glVertex2s(c.getConvexHullX(i),c.getConvexHullY(i)*(-1));
 
             }
             glEnd();

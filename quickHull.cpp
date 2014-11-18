@@ -20,6 +20,8 @@ void QuickHull::setConvexHullX( int value)
     this->convexHullX.push_back(value);
 }
 
+
+
 int QuickHull::getConvexHullY(int value)
 {
     return convexHullY[value];
@@ -52,7 +54,6 @@ void QuickHull::setlowestXY(int value)
       lowestXY.push_back(value);
 }
 
-
 void QuickHull::quickHull(Punto2D a)
 {
     Punto2D S1, S2;
@@ -69,7 +70,7 @@ void QuickHull::quickHull(Punto2D a)
     }
 
     //Insert the highest coordinate into the Convex Hull
-    this->convexHullX.push_back(a.getX(index));    this->convexHullY.push_back(a.getY(index));
+ //   this->convexHullX.push_back(a.getX(index));    this->convexHullY.push_back(a.getY(index));
 
     //Save to HighestXY
     this->highestXY.push_back(a.getX(index));    this->highestXY.push_back(a.getY(index));
@@ -89,8 +90,8 @@ void QuickHull::quickHull(Punto2D a)
     S1.setX(a.getX(index));     S1.setY(a.getY(index));
     S1.setX(a.getX(index2));    S1.setY(a.getY(index2));
 
-    S2.setX(a.getX(index));     S2.setY(a.getY(index));
-    S2.setX(a.getX(index2));    S2.setY(a.getY(index2));
+    S2.setX(a.getX(index2));     S2.setY(a.getY(index2));
+    S2.setX(a.getX(index));    S2.setY(a.getY(index));
 
     int p1 = 2; int p2 =2;
     for(int i=0; i<a.getPoint(); i++)
@@ -111,24 +112,17 @@ void QuickHull::quickHull(Punto2D a)
     }
     S1.setPoint(p1);    S2.setPoint(p2);
 
-/* //para comprobar
-for(int j=0; j<S1.getPoint();j++)
-{
-    cout<<"S1: "<<S1.getX(j)<<" "<<S1.getY(j)<<endl;
-}
-
-for(int j=0; j<S2.getPoint();j++)
-{
-    cout<<"S2: "<<S2.getX(j)<<" "<<S2.getY(j)<<endl;
-}
-//*/
-
-
-
-
 
     findHull(S1, 0, 1);
-    findHull(S2, 0, 1);
+    findHull(S2, 1, 0);
+
+
+
+    cout<<"QuickHull:"<<endl;
+    for(int i = 0; i < this->getVectorSize(); i++)
+        {
+            cout<<"QX: "<<this->convexHullX[i]<<" QY: "<<this->convexHullY[i]<<endl;
+        }
 
 
 
@@ -137,9 +131,59 @@ for(int j=0; j<S2.getPoint();j++)
   //  this->convexHullX.push_back(a.getX(index));
    // this->convexHullY.push_back(a.getY(index));
    // this->convexHullX.push_back(a.getX(index2));
-    //this->convexHullY.push_back(a.getY(index2));
+   // this->convexHullY.push_back(a.getY(index2));
+
+   //this->isRight();
+    vector<int> swapX;
+    vector<int> swapY;
+
+    for(int i=0; i<this->getVectorSize();i++)
+    {
+        if(this->highestXY[0] == this->convexHullX[i] && this->highestXY[1] ==this->convexHullY[i])
+        {
+            swapX.push_back(this->convexHullX[0]);          swapY.push_back( this->convexHullY[0]);
+            this->convexHullX[i] = swapX[0];                this->convexHullY[i] = swapY[0];
+            this->convexHullX[0] = this->highestXY[0];      this->convexHullY[0] =this->highestXY[1];
+
+        }
+
+    }
+
+float smallDist;
+float dist; int pos;
+   int k =1;
+   int l = 1;
 
 
+    for(int i=0; i <this->getVectorSize();i++)
+    {
+        float distX = ((this->getConvexHullX(k)-this->getConvexHullX(i))*(this->getConvexHullX(k)-this->getConvexHullX(i)));
+        float distY = ((this->getConvexHullY(k)-this->getConvexHullY(i))*(this->getConvexHullY(k)-this->getConvexHullY(i)));
+        smallDist = sqrt(distX + distY);
+        do{
+        distX = ((this->getConvexHullX(k)-this->getConvexHullX(i))*(this->getConvexHullX(k)-this->getConvexHullX(i)));
+        distY = ((this->getConvexHullY(k)-this->getConvexHullY(i))*(this->getConvexHullY(k)-this->getConvexHullY(i)));
+        dist = sqrt(distX + distY);
+
+        if(dist < smallDist)
+        {
+           smallDist = dist;
+           iter_swap(this->convexHullX.begin()+k, this->convexHullX.begin()+l);
+           iter_swap(this->convexHullY.begin()+k, this->convexHullY.begin()+l);
+
+        }
+        k++;
+        }while(k<this->getVectorSize());
+
+        k = l+1;
+        l++;
+
+    }
+
+
+
+      this->convexHullX.push_back(a.getX(index));
+      this->convexHullY.push_back(a.getY(index));
 
         cout<<"QuickHull:"<<endl;
         for(int i = 0; i < this->getVectorSize(); i++)
@@ -156,14 +200,14 @@ void QuickHull::findHull(Punto2D S, int P, int Q)
     float dist1, dist2, res, farthest;
     farthest = 0;
 
-    if(S.getPoint() <=  2)
+    if(S.getPoint() ==  2)
     {
         return ;
     }
 
 
     //Calculate farthest point from segment PQ
-    for( int i = 0; i<S.getPoint();i++)
+    for( int i = 2; i<S.getPoint();i++)
     {
         dist1 = sqrt(((S.getX(i)-S.getX(P))*(S.getX(i)-S.getX(P)))+((S.getY(i)-S.getY(P))*(S.getY(i)-S.getY(P))));
         dist2 = sqrt(((S.getX(i)-S.getX(Q))*(S.getX(i)-S.getX(Q)))+((S.getY(i)-S.getY(Q))*(S.getY(i)-S.getY(Q))));
@@ -184,8 +228,8 @@ void QuickHull::findHull(Punto2D S, int P, int Q)
     S1.setX(S.getX(P));    S1.setY(S.getY(P));
     S1.setX(S.getX(C));    S1.setY(S.getY(C));
 
-    S2.setX(S.getX(C));    S2.setY(S.getY(C));
     S2.setX(S.getX(Q));    S2.setY(S.getY(Q));
+    S2.setX(S.getX(C));    S2.setY(S.getY(C));
 
     int p1 = 2; int p2 =2;
     for(int i=0; i<S.getPoint(); i++)
@@ -196,35 +240,21 @@ void QuickHull::findHull(Punto2D S, int P, int Q)
             S1.setY(S.getY(i));
             p1++;
         }
-
-    }
-
-    for(int i=0; i<S.getPoint(); i++)
-    {
-        if(isLeft(S, C, i, Q) == 1)
+        else if(isLeft(S, C, i, Q) == 1)
         {
-            S2.setX(S.getX(i));         //S2 has all points right of segment C to Q
+            S2.setX(S.getX(i));        //S2 has all points right of segment C to Q
             S2.setY(S.getY(i));
             p2++;
         }
 
     }
-    S1.setPoint(p1);    S2.setPoint(p2);
-/*
-    for(int j=0; j<S1.getPoint();j++)
-    {
-        cout<<"S1: "<<S1.getX(j)<<" "<<S1.getY(j)<<endl;
-    }
 
-    for(int j=0; j<S2.getPoint();j++)
-    {
-        cout<<"S2: "<<S2.getX(j)<<" "<<S2.getY(j)<<endl;
-    }
-*/
+
+    S1.setPoint(p1);    S2.setPoint(p2);
+
 
     findHull(S1, 0, 1);
-    findHull(S2, 0, 1);
-
+    findHull(S2, 1, 0);
 
 
 }
@@ -245,8 +275,9 @@ int QuickHull::isLeft(Punto2D a, int m, int i , int o)
 
 }
 
-int QuickHull::isRight(Punto2D S, int P, int Q)
+void QuickHull::isRight()
 {
+
 
 }
 

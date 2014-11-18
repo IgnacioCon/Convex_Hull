@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <fstream>
-
+#include <algorithm>
 using namespace std;
 
 class Punto2D
@@ -17,6 +17,7 @@ protected:
     vector<int> x;
     vector<int> y;
 public:
+
 
     Punto2D();
     Punto2D(int points);
