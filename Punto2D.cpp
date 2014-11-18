@@ -11,6 +11,26 @@ void Punto2D::setPoint(int value)
 {
     point = value;
 }
+
+void Punto2D::setConvexHullX(int value)
+{
+     this->convHullX.push_back(value);
+}
+
+int Punto2D::getConvexHullX( int value)
+{
+    return convHullX[value];
+}
+
+void Punto2D::setConvexHullY(int value)
+{
+     this->convHullY.push_back(value);
+}
+
+int Punto2D::getConvexHullY( int value)
+{
+    return convHullY[value];
+}
 Punto2D::Punto2D()
 {
     point = 0;
@@ -38,14 +58,42 @@ void Punto2D::createPoints(int points)
 
     for(int i=0; i<this->point; i++)
         {
-            this->y[i]=(rand()%460)-230;  //assgin random numbers from -230 to 230
+            this->y[i]=(rand()%460)-230;  //assign random numbers from -230 to 230
         }
 
     for(int i = 0; i < this->point; i++)
         {
-            cout<<"X: "<<this->x[i]<<" Y: "<<this->y[i]<<endl;
+            cout<<"X: "<<this->x[i]<<" Y: "<<this->y[i]<<endl;  //Show the points created
         }
 
+}
+
+int Punto2D::getVectorSize()
+{
+    return this->convHullX.size();
+}
+
+
+
+void Punto2D::printConvex()
+{
+    cout<<"COPIED Convex Hull"<<endl;
+    for(int i = 0; i < this->getVectorSize(); i++)
+        {
+            cout<<"X: "<<this->getConvexHullX(i)<<" Y: "<<this->getConvexHullY(i)<<endl;
+    }
+}
+
+void Punto2D::displayConvexHull(int r, int b)
+{
+    glBegin(GL_LINE_LOOP);
+    glColor3f(r,0,b);
+    for(int i = 0; i < this->getVectorSize();i++)
+    {
+        glVertex2s(this->getConvexHullX(i),this->getConvexHullY(i)*(-1));
+
+    }
+    glEnd();
 }
 
 
@@ -86,4 +134,10 @@ void Punto2D::savePoints(string c)
         file.close();
       }
 
+}
+
+void Punto2D::clearVector()
+{
+    this->convHullX.clear();
+    this->convHullY.clear();
 }

@@ -11,6 +11,7 @@ protected:
    vector<int> convexHullX;
    vector<int> convexHullY;
 
+
 public:
     GiftWrap();
     int getConvexHullY(int value);
@@ -19,8 +20,11 @@ public:
     void setConvexHullX(int value);
 
     void calcConvexHull(Punto2D a);
+
     int leftTurn(Punto2D a, int m, int i, int o);
+    Punto2D copyConvexHull();
     int getVectorSize();
+
 
 };
 

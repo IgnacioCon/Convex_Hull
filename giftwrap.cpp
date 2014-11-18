@@ -46,8 +46,8 @@ void GiftWrap::calcConvexHull(Punto2D a)
     this->convexHullY.push_back(a.getY(index));
 
     int m = index;
-    int o; //m is starting point, index is sentinel, and o is random point
-    int c = 1; //number of points in convex hull
+    int o;          //m is starting point, index is sentinel, and o is random point
+    int c = 1;      //number of points in convex hull
 
     //Begin search for the Convex Hull
     do
@@ -62,6 +62,7 @@ void GiftWrap::calcConvexHull(Punto2D a)
             }
        }
 
+       //Insert point into the convex hull solution
        this->convexHullX.push_back(a.getX(o));
        this->convexHullY.push_back(a.getY(o));
 
@@ -69,7 +70,7 @@ void GiftWrap::calcConvexHull(Punto2D a)
        c++;   //increase number of convex hull coordinates
     }while (m != index);
 
-    cout<<"Convex Hull"<<endl;
+    cout<<"\nGift Wrap:"<<endl;
     for(int i = 0; i < c; i++)
         {
             cout<<"X: "<<this->convexHullX[i]<<" Y: "<<this->convexHullY[i]<<endl;
@@ -92,6 +93,23 @@ int GiftWrap::leftTurn(Punto2D a, int m, int i, int o)
     }
 
     return  (result>0)? 1:2; //if greater than 0, clockwise, else counterclockwise
+
+}
+
+Punto2D GiftWrap::copyConvexHull()
+{
+    Punto2D *a = new Punto2D;
+
+    //Erase previous data in order to save new convexHull
+    a->clearVector();
+
+    //Set the Convex Hull obtained from GiftWrap Algorithm
+    for(int i = 0; i<this->getVectorSize();i++)
+    {
+        a->setConvexHullX(this->getConvexHullX(i));
+        a->setConvexHullY(this->getConvexHullY(i));
+    }
+    return *a;
 
 }
 

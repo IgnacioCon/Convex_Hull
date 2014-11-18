@@ -35,13 +35,13 @@ public:
     void quickHull(Punto2D a);
     void findHull(Punto2D S, int P, int Q);
 
-    int isLeft(Punto2D a, int m, int i, int o);
-    void isRight();
+    Punto2D copyConvexHull();
 
     int getVectorSize();
 
 
 
+    int isLeftOrRight(Punto2D a, int m, int i, int o);
 };
 
 

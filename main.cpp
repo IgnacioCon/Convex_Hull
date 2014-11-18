@@ -2,30 +2,31 @@
 #include "Punto2D.h"
 #include "giftwrap.h"
 #include "quickHull.h"
-#include <GL/gl.h>
-#include <GL/glut.h>
-
 using namespace std;
 
 void display();
 void init();
 void reshape(int width,int height);
+void keyboard(unsigned char key,int x, int y);
 
-Punto2D a;
+Punto2D a, d;
 GiftWrap b;
 QuickHull c;
-
+int red = 1;
+int blue = 0;
 int points;
 int main(int argc, char **argv)
 {
     srand(time(NULL));
-
+    cout<<"                                   CONVEX HULL"<<endl;
+    cout<<"Press A to display GiftWrap Algorithm.\nPress B to display QuickHull Algorithm.\nPress D to exit."<<endl;
+    cout<<"--------------------------------------------------------------------------------"<<endl;
     cout<<"Input number of points to plot: "; cin>>points;
     a.createPoints(points);
 
     b.calcConvexHull(a);
     c.quickHull(a);
-    //a.savePoints("Puntos.txt");
+
 
     glutInit(&argc, argv); //Begin to use GLUT
     //Begin display
@@ -37,7 +38,7 @@ int main(int argc, char **argv)
     init();
     glutDisplayFunc(display); //Begin visualization of the image
     glutReshapeFunc(reshape);
-
+    glutKeyboardFunc(keyboard);//Keyboard
     glutMainLoop();
 
 
@@ -55,7 +56,7 @@ void display()
     glClear(GL_COLOR_BUFFER_BIT);
     glLoadIdentity();
 
-    glPointSize(2);
+    glPointSize(3);
     glBegin(GL_POINTS);
     glColor3f(1,1,0);
 
@@ -66,24 +67,9 @@ void display()
 
     }
     glEnd();
-   // glBegin(GL_LINE_LOOP);
-    //glColor3f(0,1,1);
-    /*
-            for(int i = 0; i < b.getVectorSize();i++)
-            {
-                glVertex2s(b.getConvexHullX(i),b.getConvexHullY(i)*(-1));
 
-            }
-            glEnd();
-            */
-    glBegin(GL_LINE_LOOP);
-    glColor3f(0,1,1);
-            for(int i = 0; i < c.getVectorSize();i++)
-            {
-                glVertex2s(c.getConvexHullX(i),c.getConvexHullY(i)*(-1));
+    d.displayConvexHull(red,blue);
 
-            }
-            glEnd();
     glFlush();
     glutPostRedisplay();
 }
@@ -91,16 +77,14 @@ void display()
 
 void init()
 {
-   glClearColor(0.0,0.0,0.0,0.0); //Esta funcion recive un valor RGBA
+   glClearColor(0.0,0.0,0.0,0.0);
 }
 
 void reshape(int width,int height)
 {
-   // printf("%d %d\n",width,height);
 
     glViewport(0,0,width,height);
 
-    //https://www.opengl.org/sdk/docs/man2/xhtml/glMatrixMode.xml
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
@@ -111,5 +95,30 @@ void reshape(int width,int height)
 
 
     glutPostRedisplay();
+}
+
+void keyboard(unsigned char key,int x, int y)
+{
+    switch(key)
+    {
+    case 'd': //Exit
+        exit(0);
+        break;
+    case 'a':
+        //Set color line to Red
+        red = 1;    blue = 0;
+        //Display Convex Hull Calculated by Giftwrap
+        d = b.copyConvexHull();
+        cout<<"GiftWrap"<<endl;
+        break;
+    case 's':
+        //Set color line to Blue
+        red = 0;    blue = 1;
+
+        //Display convex hull calculated by QuickHull
+        d = c.copyConvexHull();
+        cout<<"QuickHull"<<endl;
+        break;
+    }
 }
 

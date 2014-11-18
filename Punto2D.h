@@ -7,6 +7,10 @@
 #include <time.h>
 #include <fstream>
 #include <algorithm>
+#include <GL/gl.h>
+#include <GL/glut.h>
+
+
 using namespace std;
 
 class Punto2D
@@ -16,6 +20,9 @@ protected:
     int point;  //number of points
     vector<int> x;
     vector<int> y;
+    vector<int> convHullX;
+    vector<int> convHullY;
+
 public:
 
 
@@ -29,9 +36,19 @@ public:
     int getPoint();
     void setPoint(int value);
 
+    void setConvexHullX(int value);
+    int getConvexHullX(int value);
+    void setConvexHullY(int value);
+    int getConvexHullY(int value);
 
     void savePoints(string c);
+    void clearVector();
     void createPoints(int points);
+    int getVectorSize();
+
+
+    void printConvex();
+    void displayConvexHull(int r, int b);
 
 };
 
