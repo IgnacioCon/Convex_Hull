@@ -6,9 +6,9 @@ A program that generates random points and calculates the Convex Hull of those p
 Date: 11/18/2014
 
 Authors: 
-*Victor Figueroa Chavez
-*Victor Omar Jimenez Barajas
-*Ignacio Contreras Contreras
+* Victor Figueroa Chavez
+* Victor Omar Jimenez Barajas
+* Ignacio Contreras Contreras
 
 Universidad de Guanajuato
 
@@ -21,10 +21,10 @@ The Convex Hull is calculated through either the GiftWrap or QuickHull algorithm
 algorithm he wishes to view.
 
 This program contains the following functions:
-*Generate Random Points.
-*Calculate Convex Hull with GiftWrap algorithm.
-*Calculate Convex Hull with QuickHull algorithm.
-*Visualize the calculated Convex Hull.
+* Generate Random Points.
+* Calculate Convex Hull with GiftWrap algorithm.
+* Calculate Convex Hull with QuickHull algorithm.
+* Visualize the calculated Convex Hull.
 
 ##Examples
 
