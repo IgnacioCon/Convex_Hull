@@ -5,9 +5,10 @@ A program that generates random points and calculates the Convex Hull of those p
 
 Date: 11/18/2014
 
-Authors:  Victor Figueroa Chavez
-          Victor Omar Jimenez Barajas
-          Ignacio Contreras Contreras
+Authors: 
+*Victor Figueroa Chavez
+*Victor Omar Jimenez Barajas
+*Ignacio Contreras Contreras
 
 Universidad de Guanajuato
 
